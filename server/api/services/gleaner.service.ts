@@ -9,7 +9,7 @@ export class GleanerService {
 
         return axios.get(url).then(response => {
             const $ = cheerio.load(response.data);
-            const detailPrmoises = [];
+            const detailPromises = [];
             $("body > div.main > section:nth-child(6) > div > section > div > div > section > table > tbody tr").each((i,row) => {
                 if($(row).children().length>1 && $(row).find('h3>a').html()) {
                     const apartmentDetailLink = $(row).find('h3>a').attr('href');
@@ -17,19 +17,25 @@ export class GleanerService {
                     const promise =  axios.get(apartmentDetailLink).then(response => {
                         const $detailPage = cheerio.load(response.data);
 
+                        const apartmentDescription = $detailPage('#ad-detail > article > div.adcontent > p')
+                            .html()
+                            .replace(/<\/?[^>]+(>|$)/g, "") //remove html elements from description
+                            .replace(/\s{2,}/g," ")
+                            .trim()
+                            
                         listing.push({
                             link: $(row).find('h3>a').attr('href'),
                             dateListed:  $detailPage('#order-info > table > tbody > tr:nth-child(1) > td:nth-child(2)').html(),
                             dateExpired:  $detailPage('#order-info > table > tbody > tr:nth-child(2) > td:nth-child(2)').html(),
-                            description: $detailPage('#ad-detail > article > div.adcontent > p').html()
+                            description: apartmentDescription
                         });
                         
                     });
-                    detailPrmoises.push(promise);                    
+                    detailPromises.push(promise);                    
                 };
             })
 
-            return Promise.all(detailPrmoises).then(() => {
+            return Promise.all(detailPromises).then(() => {
                 return Promise.resolve(listing);
             });
 
