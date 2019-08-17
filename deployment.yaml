@@ -44,14 +44,16 @@ metadata:
   name: ja-rental-server
   annotations:
     kubernetes.io/ingress.global-static-ip-name: website-ip
+    kubernetes.io/use-regex: "true"
   labels:
     app: ja-rental-server
 spec:
   rules:
-  - path: /projects/ja-rentals/api
+  - host: warrenclough.com
     http: 
       paths:
-      - backend:
+      - path: /projects/ja-rentals/api/.*
+        backend:
           serviceName: ja-rental-server
           servicePort: 8080
           
