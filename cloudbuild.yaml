@@ -24,7 +24,19 @@ steps:
     - 'deployment.yaml'
     - 'deployment.yaml'
   env:
-    - 'SHORT_SHA=$SHORT_SHA'
+    - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=website-cluster'
+    - 'TEST_SHORT_SHA_YES=$SHORT_SHA'
+    - 'APP_ID=${_APP_ID}'
+    - 'PORT=${_PORT}'
+    - 'LOG_LEVEL=${_LOG_LEVEL}'
+    - 'REQUEST_LIMIT=${_REQUEST_LIMIT}'
+    - 'SESSION_SECRET=${_SESSION_SECRET}'
+    - 'OPENAPI_SPEC=${_OPENAPI_SPEC}'
+    - 'MONGO_HOST=${_MONGO_HOST}'
+    - 'MONGO_PORT=${_MONGO_PORT}'
+    - 'MONGO_DB=${_MONGO_DB}'
+
 
 # Deploy application on kubernetes
 - name: 'gcr.io/cloud-builders/kubectl'
