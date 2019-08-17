@@ -48,10 +48,10 @@ metadata:
     app: ja-rental-server
 spec:
   rules:
-  - host: api.pathofefficiency.com
+  - path: /projects/ja-rentals/api
     http: 
       paths:
       - backend:
           serviceName: ja-rental-server
           servicePort: 8080
-      - path: /projects/ja-rentals/api      
+          
