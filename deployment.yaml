@@ -110,13 +110,8 @@ metadata:
   labels:
     app: ja-rental-server
 spec:
-  rules:
-  - host: warrenclough.com
-    http: 
-      paths:
-      - path: /projects/ja-rentals/api/.*
-        backend:
-          serviceName: ja-rental-server
-          servicePort: 8080
+  backend:
+    serviceName: ja-rental-server
+    servicePort: 8080
 
           
