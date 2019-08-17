@@ -20,6 +20,9 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-openapi-validator": "^1.4.0",
+    "moment": "^2.24.0",
+    "mongoose": "^5.6.9",
+    "node-cron": "^2.0.3",
     "pino": "^5.13.1"
   },
   "devDependencies": {

@@ -6,7 +6,7 @@ import ExamplesService from '../../services/examples.service';
 export class ScapperController {
   all(req: Request, res: Response): void {
     
-    GleanerService.getApartmentListings().then(listings => {
+    GleanerService.scrapeAppartments().then(listings => {
       res.status(200).json(listings);
     })
     .catch(error => {

@@ -11,6 +11,15 @@ tags:
 - name: Specification
   description: The swagger API specification
 paths:
+  /apartments:
+    get:
+      tags:
+      - Apartments
+      description: Fetch a list of appartments
+      responses:
+        200:
+          description: Returns all appartments
+          content: {}
   /scrapper:
     get:
       tags:
