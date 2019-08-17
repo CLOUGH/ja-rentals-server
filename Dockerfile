@@ -5,7 +5,7 @@ FROM node:10
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install -g tscnpm run compile
+RUN npm install && npm run compile
 # If you are building your code for production
 # RUN npm ci --only=production
 
