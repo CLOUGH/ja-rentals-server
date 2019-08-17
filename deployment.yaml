@@ -1,14 +1,14 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: ja-rental-server
-data:
-  MONGO_DB: ${MONGO_DB}
-  MONGO_PORT: ${MONGO_PORT}
-  MONGO_HOST: ${MONGO_HOST}
-  LOG_LEVEL: ${LOG_LEVEL}
----
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: ja-rental-server
+# data:
+#   MONGO_DB: ${MONGO_DB}
+#   MONGO_PORT: ${MONGO_PORT}
+#   MONGO_HOST: ${MONGO_HOST}
+#   LOG_LEVEL: ${LOG_LEVEL}
+# ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
