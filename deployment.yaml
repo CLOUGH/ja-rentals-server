@@ -4,10 +4,15 @@ kind: ConfigMap
 metadata:
   name: ja-rental-server
 data:
-  MONGO_DB: ${MONGO_DB}
-  MONGO_PORT: ${MONGO_PORT}
-  MONGO_HOST: ${MONGO_HOST}
-  LOG_LEVEL: ${LOG_LEVEL}
+  APP_ID: APP_ID
+  PORT: PORT
+  LOG_LEVEL: LOG_LEVEL
+  REQUEST_LIMIT: REQUEST_LIMIT
+  SESSION_SECRET: SESSION_SECRET
+  OPENAPI_SPEC: OPENAPI_SPEC
+  MONGO_HOST: MONGO_HOST
+  MONGO_PORT: MONGO_PORT
+  MONGO_DB: MONGO_DB
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -33,31 +38,52 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-        # env:
-        # - name: APP_ID
-        #   value: ${APP_ID}
-        # - name: PORT
-        #   value: ${PORT}
-        # - name: LOG_LEVEL
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: ja-rental-server
-        #       key: LOG_LEVEL
-        # - name: REQUEST_LIMIT
-        #   value: ${REQUEST_LIMIT}
-        # - name: SESSION_SECRET
-        #   value: ${SESSION_SECRET}
-        # - name: OPENAPI_SPEC
-        #   value: ${OPENAPI_SPEC}
-        # - name: MONGO_HOST
-        #   value: ${MONGO_HOST}
-        # - name: MONGO_PORT
-        #   value: ${MONGO_PORT}
-        # - name: MONGO_DB
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: ja-rental-server
-        #       key: MONGO_DB
+        env:
+        - name: APP_ID
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: APP_ID
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: PORT
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: LOG_LEVEL
+        - name: REQUEST_LIMIT
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: REQUEST_LIMIT
+        - name: SESSION_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: SESSION_SECRET
+        - name: OPENAPI_SPEC
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: OPENAPI_SPEC
+        - name: MONGO_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: MONGO_HOST
+        - name: MONGO_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: MONGO_PORT
+        - name: MONGO_DB
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: MONGO_DB
 ---
 apiVersion: v1
 kind: Service
