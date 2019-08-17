@@ -22,6 +22,25 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        env:
+        - name: APP_ID
+          value: ${APP_ID}
+        - name: PORT
+          value: ${PORT}
+        - name: LOG_LEVEL
+          value: ${LOG_LEVEL}
+        - name: REQUEST_LIMIT
+          value: ${REQUEST_LIMIT}
+        - name: SESSION_SECRET
+          value: ${SESSION_SECRET}
+        - name: OPENAPI_SPEC
+          value: ${OPENAPI_SPEC}
+        - name: MONGO_HOST
+          value: ${MONGO_HOST}
+        - name: MONGO_PORT
+          value: ${MONGO_PORT}
+        - name: MONGO_DB
+          value: ${MONGO_DB}
 ---
 apiVersion: v1
 kind: Service
@@ -56,4 +75,5 @@ spec:
         backend:
           serviceName: ja-rental-server
           servicePort: 8080
+
           
