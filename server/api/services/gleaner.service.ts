@@ -40,6 +40,7 @@ export class GleanerService {
                         const expiresAt = moment($detailPage('#order-info > table > tbody > tr:nth-child(2) > td:nth-child(2)').html(), 'MM/DD/YYYY').toDate();
                         const match = /ad_id\/(\d+)/ig.exec(originalLink);
                         const key = match ? match[1] : null;
+                        const source = 'Gleaner';
 
 
                         return Apartment.findOne({ key }).then(apartment => {
@@ -47,6 +48,7 @@ export class GleanerService {
                                 return apartment as IApartmentModel;
                             }
                             const newApartment = new Apartment({
+                                source,
                                 description,
                                 originalLink,
                                 listedAt,

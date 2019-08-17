@@ -20,6 +20,29 @@ paths:
         200:
           description: Returns all appartments
           content: {}
+  /apartments/{id}:
+    put:
+      tags:
+      - Apartments
+      description: Update a apartment
+      parameters:
+      - name: id
+        in: path
+        description: The id apartment
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: an apartment
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Apartment'
+        required: true
+      responses:
+        200:
+          description: Returns updated apartment
+          content: {}
   /scrapper:
     get:
       tags:
@@ -90,3 +113,19 @@ components:
         name:
           type: string
           example: no_stress
+    Apartment:
+      title: Apartment
+      type: object
+      properties:
+        description:
+          type: string
+        originalLink:
+          type: string
+        listedAt:
+          type: string
+        expiresAt:
+          type: string
+        status:
+          type: string
+        key:
+          type: string

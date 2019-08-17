@@ -5,8 +5,9 @@ import bodyParser from 'body-parser';
 import http from 'http';
 import os from 'os';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
-  import installValidator from './openapi';
+import installValidator from './openapi';
 
 import l from './logger';
 import Mongoose from './mongoose';
@@ -24,6 +25,7 @@ export default class ExpressServer {
     app.use(bodyParser.urlencoded({ extended: true, limit: process.env.REQUEST_LIMIT || '100kb' }));
     app.use(cookieParser(process.env.SESSION_SECRET));
     app.use(express.static(`${root}/public`));
+    app.use(cors());
   }
 
   router(routes: (app: Application) => void): ExpressServer {
@@ -32,7 +34,7 @@ export default class ExpressServer {
   }
 
   listen(p: string | number = process.env.PORT): Application {
-    const welcome = port => () => l.info(`up and running in ${process.env.NODE_ENV || 'development'} @: ${os.hostname() } on port: ${port}}`);
+    const welcome = port => () => l.info(`up and running in ${process.env.NODE_ENV || 'development'} @: ${os.hostname()} on port: ${port}}`);
     http.createServer(app).listen(p, welcome(p));
     mongoose.init();
     scraper.init();

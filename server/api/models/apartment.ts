@@ -5,10 +5,12 @@ const Schema = mongoose.Schema;
 export interface IApartmentModel extends mongoose.Document {
     description: string;
     originalLink: string;
-    listedAt?: Date;
-    expiresAt?: Date;
+    listedAt: Date;
+    expiresAt: Date;
     status?: string;
-    key?: string;
+    commentc?: string;
+    key: string;
+    source: string;
 }
 
 const schema = new Schema({
@@ -17,7 +19,9 @@ const schema = new Schema({
     listedAt: Date,
     expiresAt: Date,
     status: String,
+    comment: String,
     key: String,
+    source: String
 });
 
 export const Apartment = mongoose.model<IApartmentModel>("Apartment", schema);
