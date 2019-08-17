@@ -26,7 +26,7 @@ steps:
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
     - 'CLOUDSDK_CONTAINER_CLUSTER=website-cluster'
-    - 'TEST_SHORT_SHA_YES=$SHORT_SHA'
+    - 'SHORT_SHA=$SHORT_SHA'
     - 'APP_ID=${_APP_ID}'
     - 'PORT=${_PORT}'
     - 'LOG_LEVEL=${_LOG_LEVEL}'
@@ -44,7 +44,7 @@ steps:
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
     - 'CLOUDSDK_CONTAINER_CLUSTER=website-cluster'
-    - 'TEST_SHORT_SHA_YES=$SHORT_SHA'
+    - 'SHORT_SHA=$SHORT_SHA'
     - 'APP_ID=${_APP_ID}'
     - 'PORT=${_PORT}'
     - 'LOG_LEVEL=${_LOG_LEVEL}'
