@@ -25,7 +25,7 @@ spec:
       labels:
         app: ja-rental-server
         tier: web
-        sha: ${_MONGO_PORT}
+        sha: ${TEST_SHORT_SHA_YES}
     spec:
       containers:
       - name: ja-rental-server
@@ -38,11 +38,11 @@ spec:
           value: ${APP_ID}
         - name: PORT
           value: ${PORT}
-        - name: LOG_LEVEL
-          valueFrom:
-            configMapKeyRef:
-              name: ja-rental-server
-              key: LOG_LEVEL
+        # - name: LOG_LEVEL
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: ja-rental-server
+        #       key: LOG_LEVEL
         - name: REQUEST_LIMIT
           value: ${REQUEST_LIMIT}
         - name: SESSION_SECRET
@@ -53,11 +53,11 @@ spec:
           value: ${MONGO_HOST}
         - name: MONGO_PORT
           value: ${MONGO_PORT}
-        - name: MONGO_DB
-          valueFrom:
-            configMapKeyRef:
-              name: ja-rental-server
-              key: MONGO_DB
+        # - name: MONGO_DB
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: ja-rental-server
+        #       key: MONGO_DB
 ---
 apiVersion: v1
 kind: Service
