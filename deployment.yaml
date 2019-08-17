@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: ja-rental-server
-        image: gcr.io/website-227817/ja-rental-server:latest
+        image: gcr.io/website-227817/ja-rentals-server:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
