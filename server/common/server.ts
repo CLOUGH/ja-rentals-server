@@ -6,6 +6,8 @@ import http from 'http';
 import os from 'os';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import expressLogging  from 'express-logging';
+import logger from 'logops';
 
 import installValidator from './openapi';
 
@@ -26,6 +28,7 @@ export default class ExpressServer {
     app.use(cookieParser(process.env.SESSION_SECRET));
     app.use(express.static(`${root}/public`));
     app.use(cors());
+    app.use(expressLogging(logger));
   }
 
   router(routes: (app: Application) => void): ExpressServer {

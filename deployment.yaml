@@ -5,14 +5,14 @@ metadata:
   name: ja-rental-server
 data:
   APP_ID: ${APP_ID}
-  PORT: ${PORT}
+  PORT: {PORT}
   LOG_LEVEL: ${LOG_LEVEL}
-  REQUEST_LIMIT: ${REQUEST_LIMIT}
-  SESSION_SECRET: ${SESSION_SECRET}
-  OPENAPI_SPEC: ${OPENAPI_SPEC}
-  MONGO_HOST: ${MONGO_HOST}
-  MONGO_PORT: ${MONGO_PORT}
-  MONGO_DB: ${MONGO_DB}
+  REQUEST_LIMIT: {REQUEST_LIMIT}
+  SESSION_SECRET: {SESSION_SECRET}
+  OPENAPI_SPEC: {OPENAPI_SPEC}
+  MONGO_HOST: {MONGO_HOST}
+  MONGO_PORT: {MONGO_PORT}
+  MONGO_DB: {MONGO_DB}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -99,19 +99,5 @@ spec:
   ports:
   - port: 8080
     targetPort: 8080
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: ja-rental-server
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: website-ip
-    kubernetes.io/use-regex: "true"
-  labels:
-    app: ja-rental-server
-spec:
-  backend:
-    serviceName: ja-rental-server
-    servicePort: 8080
 
           
