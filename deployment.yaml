@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ja-rental-server
+  labels:
+    app: ja-rental-server
+spec:
+  selector:
+    matchLabels:
+      app: ja-rental-server
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: ja-rental-server
+        tier: web
+        sha: ${SHORT_SHA}
+    spec:
+      containers:
+      - name: ja-rental-server
+        image: gcr.io/website-227817/ja-rental-server:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ja-rental-server
+  labels:
+    app: ja-rental-server
+spec:
+  type: NodePort
+  selector:
+    app: ja-rental-server
+    tier: web
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ja-rental-server
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: website-ip
+  labels:
+    app: ja-rental-server
+spec:
+  rules:
+  - host: api.pathofefficiency.com
+    http: 
+      paths:
+      - backend:
+          serviceName: ja-rental-server
+          servicePort: 8080
+      - path: /projects/ja-rentals/api      
