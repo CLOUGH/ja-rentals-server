@@ -1,5 +1,7 @@
-import { Apartment, IApartmentModel } from './../../models/apartment';
 import { Request, Response } from 'express';
+
+import { Apartment, IApartmentModel } from './../../models/apartment';
+import L from '../../../common/logger';
 
 export class Controller {
   all(req: Request, res: Response): void {
@@ -17,7 +19,6 @@ export class Controller {
         comment: {$exists: true, $ne: ''}
       }
     }
-    console.log(query);
 
     Apartment.find(query)
       .sort({ listedAt: -1 })
@@ -29,6 +30,9 @@ export class Controller {
           res.set('Access-Control-Expose-Headers', 'page-size');
           res.json(apartments);
         })
+      }).catch(error => {
+        L.error(error);
+        res.status(500).json(error);
       });
   }
 
@@ -38,6 +42,7 @@ export class Controller {
     Apartment.findOneAndUpdate({ _id: req.params.id }, { $set: apartment }, { useFindAndModify: false, new: true }).then(updatedApartment => {
       res.json(updatedApartment);
     }).catch(error => {
+      L.error(error);
       res.status(500).json(error);
     })
   }
