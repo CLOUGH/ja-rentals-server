@@ -13,6 +13,7 @@ data:
   MONGO_HOST: ${MONGO_HOST}
   MONGO_PORT: ${MONGO_PORT}
   MONGO_DB: ${MONGO_DB}
+  SCRAPER_CRON_SCHEDULE: ${SCRAPER_CRON_SCHEDULE}
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -84,6 +85,11 @@ spec:
             configMapKeyRef:
               name: ja-rental-server
               key: MONGO_DB
+        - name: SCRAPER_CRON_SCHEDULE
+          valueFrom:
+            configMapKeyRef:
+              name: ja-rental-server
+              key: SCRAPER_CRON_SCHEDULE
 ---
 apiVersion: v1
 kind: Service

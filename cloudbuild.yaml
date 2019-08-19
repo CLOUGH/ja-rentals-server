@@ -36,6 +36,7 @@ steps:
     - 'MONGO_HOST=${_MONGO_HOST}'
     - 'MONGO_PORT=${_MONGO_PORT}'
     - 'MONGO_DB=${_MONGO_DB}'
+    - 'SCRAPER_CRON_SCHEDULE=${_SCRAPER_CRON_SCHEDULE}'
 
 
 # Deploy application on kubernetes
