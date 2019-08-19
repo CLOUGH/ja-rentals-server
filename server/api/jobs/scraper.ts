@@ -8,8 +8,8 @@ export default class Scraper {
     }
 
     init() {
-        cron.schedule('*/30 * * * *', () => {
-        console.log('running a task every 30 mins');
+        cron.schedule('* * */6 * *', () => {
+            console.log('hourly cron job ran');
             GleanerService.scrapeAppartments();
         });
     }
