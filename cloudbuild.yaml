@@ -5,7 +5,7 @@ steps:
   args:
     - 'build'
     - '-t'
-    - 'gcr.io/$PROJECT_ID/ja-rentals-backend:latest'
+    - 'gcr.io/$PROJECT_ID/ja-rentals-server:latest'
     - '.'
 
   # This step pushes the image to container registry
@@ -15,7 +15,7 @@ steps:
   id: Push
   args: 
     - 'push'
-    - 'gcr.io/$PROJECT_ID/ja-rentals-backend:latest'
+    - 'gcr.io/$PROJECT_ID/ja-rentals-server:latest'
   
 # generate new deployment yaml based on $SHORT_SHA
 - name: 'gcr.io/$PROJECT_ID/envsubst'
