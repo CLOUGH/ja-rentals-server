@@ -25,7 +25,7 @@ steps:
     - 'deployment.yaml'
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=main-micro-cluster'
+    - 'CLOUDSDK_CONTAINER_CLUSTER= main-standard-cluster'
     - 'SHORT_SHA="$SHORT_SHA"'
     - 'APP_ID=${_APP_ID}'
     - 'PORT=${_PORT}'
@@ -44,7 +44,7 @@ steps:
   id: 'Deploy on Kubernetes'
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=main-micro-cluster'
+    - 'CLOUDSDK_CONTAINER_CLUSTER= main-standard-cluster'
     - 'SHORT_SHA="$SHORT_SHA"'
   args:
     - 'apply'
