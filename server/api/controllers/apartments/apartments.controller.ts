@@ -6,7 +6,7 @@ import L from '../../../common/logger';
 export class Controller {
   all(req: Request, res: Response): void {
     const page = +req.query.page || 1;
-    const itemsPerPage = +req.query.per_page || 20;
+    const itemsPerPage = +req.query.page_size || 20;
 
     let query: any = {};
 
@@ -26,9 +26,14 @@ export class Controller {
       .limit(itemsPerPage)
       .then(apartments => {
         Apartment.estimatedDocumentCount().then(noAppartments => {
-          res.set('page-size', Math.ceil(noAppartments > 0 ? noAppartments / itemsPerPage : 0) + '');
-          res.set('Access-Control-Expose-Headers', 'page-size');
-          res.json(apartments);
+          res.json({
+            data: apartments, 
+            meta: {
+              pages:  Math.ceil(noAppartments > 0 ? noAppartments / itemsPerPage : 0),
+              total: noAppartments,
+              pageSize: itemsPerPage
+            }
+          });
         })
       }).catch(error => {
         L.error(error);
