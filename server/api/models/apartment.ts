@@ -11,6 +11,7 @@ export interface IApartmentModel extends mongoose.Document {
     commentc?: string;
     key: string;
     source: string;
+    firstListedAt: Date;
 }
 
 const schema = new Schema({
@@ -21,7 +22,8 @@ const schema = new Schema({
     status: String,
     comment: String,
     key: String,
-    source: String
+    source: String,
+    firstListedAt: Date,
 });
 
 export const Apartment = mongoose.model<IApartmentModel>("Apartment", schema);

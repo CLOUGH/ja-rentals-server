@@ -52,6 +52,15 @@ paths:
         200:
           description: Returns all appartments
           content: {}
+  /scrapper/export-pipeline-to-csv:
+    get:
+      tags:
+      - export pipeline csv
+      description: Export pipeline to csv
+      responses:
+        200:
+          description: exported
+          content: {}
   /examples:
     get:
       tags:
